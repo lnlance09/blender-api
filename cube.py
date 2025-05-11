@@ -1,6 +1,4 @@
 import bpy # type: ignore
-import bmesh # type: ignore
-import mathutils # type: ignore
 from mathutils import Euler, Vector, Matrix # type: ignore
 
 class Cube:
@@ -53,7 +51,7 @@ class Cube:
         return objCopy
     
     def delete(self):
-        print(f'Instance {self.name} destroyed')
+        print(f'Cube {self.name} deleted')
         bpy.context.view_layer.objects.active = self.cube
         bpy.ops.object.delete()
     
