@@ -1,14 +1,41 @@
-import sys
 import bpy # type: ignore
+import sys
+sys.path.append("/Users/lnewman/Documents/Blender/python/")
 import math
-sys.path.append('/Users/lnewman/Documents/Blender/python/')
-from cube import Cube, makeWindow
+from pathlib import Path
+from cube import Cube
+from utils import appendFile, setCursorToDefault
+from simpsonsObjs import allObjs
 
-# sel = bpy.context.selected_objects
-# act = bpy.context.active_object
-# bpy.context.view_layer.objects.active = object #sets the obj accessible to bpy.ops
-# window = makeWindow(dimensions=(10, 15), count=4, rows=2, thickness=0.4)
+setCursorToDefault()
 
+for obj in allObjs:
+    appendFile(
+        path=Path.home() / "Documents" / "Blender" / "NPR Master Pack" / "Assets",
+        file="Blender NPR Master Pack_Individual Assets.blend",
+        dataType="Mesh",
+        dataName=obj
+    )
+    data = bpy.data.objects.get(obj)
+    print(f"data: {data}")
+    if data is not None:
+        if data.cube is not None:
+            x = data.cube.dimensions[0]
+            y = data.cube.dimensions[1]
+            z = data.cube.dimensions[2]
+ 
+# makePictureFrame(width=10, offset=1, height=3, thickness=3)
+# makeRoom(wallWidth=0.1, wallHeight=5, roomWidth=15, roomHeight=7)
+# setCursorToDefault()
+
+'''
+x, y, z = 4, 0.1, 2
+brick1 = Cube('Brick 47', (4.3, 2.5, 1.3))
+# cube1 = Cube('Rectangle 1', (x, y, z), (0, 0, 0))
+# setCursorToDefault()
+'''
+
+'''
 x, y, z = 4, 2, 2
 cube1 = Cube('Rectangle 1', (x, y, z), (0, 0, 0))
 cube1.move((0, 0, 0))
@@ -24,3 +51,4 @@ print(f'Cube 2: {cube2}')
 cube1 = Cube('Rectangle 1')
 cube1.createIntersection('Rectangle 2')
 cube2.delete()
+'''
